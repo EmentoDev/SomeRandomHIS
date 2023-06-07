@@ -102,6 +102,10 @@ let fhirServerConfig = {
       service: './src/services/patient/patient.service.js',
       versions: [VERSIONS['4_0_0']],
     },
+    Appointment: {
+      service: './src/services/appointment/appointment.service.js',
+      versions: [VERSIONS['4_0_0']],
+    },
   },
 };
 

@@ -7,6 +7,7 @@ nodemon({
   verbose: true,
   watch: ['src/**/*.js'],
   env: process.env,
+  inspect: true,
 });
 
 nodemon

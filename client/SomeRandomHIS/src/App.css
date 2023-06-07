@@ -1,0 +1,57 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+}
+
+ul {
+  padding-left: 1em;
+}
+
+h1, h2, p {
+  margin: 0 0 .8em 0;
+}
+
+.page {
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 7px;
+}
+
+.header {
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: -1;
+  color: white;
+}
+
+.header h1 {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.header p {
+  font-style: italic;
+}
+
+.page > * {
+  background-color: #D50A52;
+  border-radius: 3px;
+  padding: 16px;
+}
+
+.footer {
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: -1;
+  color: white;
+}
+
+@media (max-width: 800px) {
+  .page {
+    grid-template-columns: none;
+  }
+}

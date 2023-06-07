@@ -1,0 +1,41 @@
+.RESOURCEEDIT {
+    display: inline-block;
+    
+}
+
+.RESOURCEEDIT h2 {
+    color: white;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    text-align: left;;
+}
+
+.RESOURCEEDIT .container {
+    background-color: white;
+    padding: 20px;
+}
+
+.RESOURCEEDIT .actions {
+    margin: 20px -5px;
+}
+
+.RESOURCEEDIT .actionButton {
+    background-color: white; 
+    color: #D60A52;
+    padding: 5px; 
+    margin: 5px; 
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.RESOURCEEDIT .actionButton:hover {
+    background-color: #f3e9ec;
+    color: #b80a47;
+}
+
+.RESOURCEEDIT .errorText {
+    color: white;
+    white-space: pre-wrap;
+    font-size: 0.8em;
+    padding: 10px;
+}

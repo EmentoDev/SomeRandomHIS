@@ -1,0 +1,30 @@
+.PATIENT .header {
+    text-align: left;
+    font-size: 1.2em;
+    color: white;
+    text-transform: uppercase;
+}
+
+.PATIENT .list {
+    width: 100%;
+    padding: 0;
+}
+
+.PATIENT .item {
+    display: block;
+    width: 100%;
+}
+
+.PATIENT .patientActionButton {
+    background-color: white; 
+    color: #D60A52;
+    padding: 5px; 
+    margin: 5px; 
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.PATIENT .patientActionButton:hover {
+    background-color: #f3e9ec;
+    color: #b80a47;
+}

@@ -6,6 +6,7 @@ const { COLLECTION, CLIENT_DB } = require('../../constants');
 const moment = require('moment-timezone');
 const globals = require('../../globals');
 const jsonpatch = require('fast-json-patch');
+const { ObjectID } = require('mongodb');
 
 const { getUuid } = require('../../utils/uid.util');
 
@@ -566,7 +567,7 @@ module.exports.update = (args, { req }) =>
       }
 
       let cleaned = JSON.parse(JSON.stringify(patient));
-      let doc = Object.assign(cleaned, { _id: id });
+      let doc = Object.assign({}, cleaned, { _id: id });
 
       // Insert/update our patient record
       collection.findOneAndUpdate({ id: id }, { $set: doc }, { upsert: true }, (err2, res) => {

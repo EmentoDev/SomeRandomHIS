@@ -40,6 +40,7 @@
   "dependencies": {
     "@asymmetrik/node-fhir-server-core": "^2.2.5",
     "@snyk/protect": "^1.1096.0",
+    "cors": "^2.8.5",
     "fast-json-patch": "^3.1.1",
     "moment-timezone": "^0.5.40",
     "mongo": "^0.1.0",

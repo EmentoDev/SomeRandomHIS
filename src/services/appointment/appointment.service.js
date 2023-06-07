@@ -5,6 +5,20 @@ const { resolveSchema } = require('@asymmetrik/node-fhir-server-core');
 const FHIRServer = require('@asymmetrik/node-fhir-server-core');
 const { ObjectID } = require('mongodb');
 const logger = require('@asymmetrik/node-fhir-server-core').loggers.get();
+const globals = require('../../globals');
+const { COLLECTION, CLIENT_DB } = require('../../constants');
+const moment = require('moment-timezone');
+
+const {
+  stringQueryBuilder,
+  tokenQueryBuilder,
+  referenceQueryBuilder,
+  addressQueryBuilder,
+  nameQueryBuilder,
+  dateQueryBuilder,
+} = require('../../utils/querybuilder.util');
+
+const FHIRCRUD = require('../../fhir.crud');
 
 let getAppointment = (base_version) => {
   return resolveSchema(base_version, 'Appointment');
@@ -14,115 +28,67 @@ let getMeta = (base_version) => {
   return resolveSchema(base_version, 'Meta');
 };
 
-module.exports.search = (args) =>
-  new Promise((resolve, reject) => {
-    logger.info('Appointment >>> search');
+let buildStu3SearchQuery = (args) => {
 
-    // Common search params
-    let { base_version, _content, _format, _id, _lastUpdated, _profile, _query, _security, _tag } =
-      args;
+  // Common search params
+  let { base_version, _content, _format, _id, _lastUpdated, _profile, _query, _security, _tag } =
+  args;
 
-    // Search Result params
-    let { _INCLUDE, _REVINCLUDE, _SORT, _COUNT, _SUMMARY, _ELEMENTS, _CONTAINED, _CONTAINEDTYPED } =
-      args;
+  // Search Result params
+  let { _INCLUDE, _REVINCLUDE, _SORT, _COUNT, _SUMMARY, _ELEMENTS, _CONTAINED, _CONTAINEDTYPED } =
+    args;
 
-    // Resource Specific params
-    let actor = args['actor'];
-    let appointment_type = args['appointment-type'];
-    let date = args['date'];
-    let identifier = args['identifier'];
-    let incomingreferral = args['incomingreferral'];
-    let location = args['location'];
-    let part_status = args['part-status'];
-    let patient = args['patient'];
-    let practitioner = args['practitioner'];
-    let service_type = args['service-type'];
-    let status = args['status'];
+  // Resource Specific params
+  //let actor = args['actor'];
+  //let appointment_type = args['appointment-type'];
+  //let date = args['date'];
+  //let identifier = args['identifier'];
+  //let incomingreferral = args['incomingreferral'];
+  //let location = args['location'];
+  //let part_status = args['part-status'];
+  let patient = args['patient'];
+  //let practitioner = args['practitioner'];
+  //let service_type = args['service-type'];
+  let status = args['status'];
 
-    // TODO: Build query from Parameters
+  let query = {};
+  let ors = [];
 
-    // TODO: Query database
+  if (_id) {
+    query.id = _id;
+  }
 
-    let Appointment = getAppointment(base_version);
+  if (status) {
+    query['status'] = stringQueryBuilder(status);
+  }
 
-    // Cast all results to Appointment Class
-    let appointment_resource = new Appointment();
-    // TODO: Set data with constructor or setter methods
-    appointment_resource.id = 'test id';
+  if (patient) {
+    let queryBuilder = referenceQueryBuilder(patient, 'participant.actor.reference');
+    for (let i in queryBuilder) {
+      query[i] = queryBuilder[i];
+    }
+  }
 
-    // Return Array
-    resolve([appointment_resource]);
-  });
+  return query;
+};
 
-module.exports.searchById = (args) =>
-  new Promise((resolve, reject) => {
-    logger.info('Appointment >>> searchById');
+const fhircrud = new FHIRCRUD(COLLECTION.APPOINTMENT, buildStu3SearchQuery);
 
-    let { base_version, id } = args;
+module.exports.search = (args) => {
+  return fhircrud.search(args);
+};
 
-    let Appointment = getAppointment(base_version);
+module.exports.searchById = (args) => {
+  return fhircrud.searchById(args);
+};
 
-    // TODO: Build query from Parameters
+module.exports.create = (args, { req }) => {
+  return fhircrud.create(args, { req });
+};
 
-    // TODO: Query database
-
-    // Cast result to Appointment Class
-    let appointment_resource = new Appointment();
-    // TODO: Set data with constructor or setter methods
-    appointment_resource.id = 'test id';
-
-    // Return resource class
-    // resolve(appointment_resource);
-    resolve();
-  });
-
-module.exports.create = (args, { req }) =>
-  new Promise((resolve, reject) => {
-    logger.info('Appointment >>> create');
-
-    let { base_version, resource } = args;
-    // Make sure to use this ID when inserting this resource
-    let id = new ObjectID().toString();
-
-    let Appointment = getAppointment(base_version);
-    let Meta = getMeta(base_version);
-
-    // TODO: determine if client/server sets ID
-
-    // Cast resource to Appointment Class
-    let appointment_resource = new Appointment(resource);
-    appointment_resource.meta = new Meta();
-    // TODO: set meta info
-
-    // TODO: save record to database
-
-    // Return Id
-    resolve({ id });
-  });
-
-module.exports.update = (args, { req }) =>
-  new Promise((resolve, reject) => {
-    logger.info('Appointment >>> update');
-
-    let { base_version, id, resource } = args;
-
-    let Appointment = getAppointment(base_version);
-    let Meta = getMeta(base_version);
-
-    // Cast resource to Appointment Class
-    let appointment_resource = new Appointment(resource);
-    appointment_resource.meta = new Meta();
-    // TODO: set meta info, increment meta ID
-
-    // TODO: save record to database
-
-    // Return id, if recorded was created or updated, new meta version id
-    resolve({
-      id: appointment_resource.id,
-      created: false,
-      resource_version: appointment_resource.meta.versionId,
-    });
-  });
+module.exports.update = (args, { req }) => {
+  return fhircrud.update(args, { req });
+};
 
 module.exports.remove = (args, context) =>
   new Promise((resolve, reject) => {
