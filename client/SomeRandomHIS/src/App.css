@@ -31,6 +31,7 @@ h1, h2, p {
 .header h1 {
   font-weight: bold;
   font-size: 2em;
+  color: white;
 }
 
 .header p {
