@@ -1,0 +1,74 @@
+{
+    "resourceType": "Appointment",
+    "id": "example",
+    "status": "booked",
+    "description": "Discussion on the results of your recent test results",
+    "start": "2023-01-01T12:00:00Z",
+    "end": "2023-01-01T13:00:00Z",
+    "comment": "Remember to tell the patient to bring his/her medicine",
+    "serviceCategory": [
+        {
+            "coding": [
+                {
+                    "code": "gp",
+                    "display": "General Practice"
+                }
+            ]
+        }
+    ],
+    "serviceType": [
+        {
+            "coding": [
+                {
+                    "code": "gd",
+                    "display": "General Discussion"
+                }
+            ]
+        }
+    ],
+    "specialty": [
+        {
+            "coding": [
+                {
+                    "code": "gp",
+                    "display": "General practice"
+                }
+            ]
+        }
+    ],
+    "appointmentType": {
+        "coding": [
+            {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0276",
+                "code": "ROUTINE",
+                "display": "A normal patient appointment"
+            }
+        ]
+    },
+    "participant": [
+        {
+            "actor": {
+                "reference": "Patient/1234567890",
+                "display": "Fornavn Efternavn"
+            },
+            "required": "required",
+            "status": "accepted"
+        },
+        {
+            "actor": {
+                "reference": "Practitioner/1",
+                "display": "Dr. Ben Dover"
+            },
+            "required": "required",
+            "status": "accepted"
+        },
+        {
+            "actor": {
+                "reference": "Location/1",
+                "display": "Waitingroom, second floor"
+            },
+            "required": "required",
+            "status": "accepted"
+        }
+    ]
+}

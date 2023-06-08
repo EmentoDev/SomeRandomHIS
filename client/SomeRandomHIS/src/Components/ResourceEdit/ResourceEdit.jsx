@@ -8,7 +8,7 @@ const fhirclient = FHIR.client({
     serverUrl: 'https://76ffhj0j-5173.euw.devtunnels.ms/4_0_0'
 });
 
-const ResourceEdit = ({resource}) => {
+const ResourceEdit = ({resource, options}) => {
     const [editObject, setEditObject] = React.useState({});
     const [error, setError] = React.useState();
 
@@ -17,8 +17,13 @@ const ResourceEdit = ({resource}) => {
             const data = await fhirclient.request(`${resource.resourceType}/${resource.id}`);
             setEditObject(data);
         };
-        getData();
-    }, [resource]);
+
+        if (options && options.new){
+            setEditObject(resource);
+        } else {
+            getData();
+        }
+    }, [resource, options]);
 
   return (
     <div className='RESOURCEEDIT'>
@@ -51,6 +56,7 @@ const ResourceEdit = ({resource}) => {
             <JsonEditor
                 key={editObject.id}
                 data={editObject}
+                width='700px'
                 onChange={data => {
                     setEditObject(data);
                 }}
@@ -58,7 +64,19 @@ const ResourceEdit = ({resource}) => {
                     resourceType: [
                         { value: 'Patient', label: 'Patient' },
                         { value: 'Appointment', label: 'Appointment' },
-                    ]
+                    ],
+                    status: [
+                        { value: 'proposed', label: 'Proposed' },
+                        { value: 'pending', label: 'Pending' },
+                        { value: 'booked', label: 'Booked' },
+                        { value: 'arrived', label: 'Arrived' },
+                        { value: 'fulfilled', label: 'Fulfilled' },
+                        { value: 'cancelled', label: 'Cancelled' },
+                        { value: 'noshow', label: 'No Show' },
+                        { value: 'entered-in-error', label: 'Entered in Error' },
+                        { value: 'checked-in', label: 'Checked In' },
+                        { value: 'waitlist', label: 'Waitlist' },
+                    ],
                 }}
             />
         </div>

@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { fhirVersions, Patient } from 'fhir-react';
 import FHIR from 'fhirclient';
 import './PatientList.css';
-import { usePatientStore, useViewStore } from '../../store';
+import { useViewStore } from '../../store';
 import { VIEWS } from '../../constants';
+import NEW_PATIENT from './NewPatient.json';
 
 const fhirclient = FHIR.client({
   serverUrl: 'https://76ffhj0j-5173.euw.devtunnels.ms/4_0_0'
@@ -11,7 +12,6 @@ const fhirclient = FHIR.client({
 
 const PatientCard = ({patientId}) => {
   const [patient, setPatient] = useState({});
-  const selectPatient = usePatientStore(state => state.set);
   const setView = useViewStore(state => state.set);
 
   useEffect(() => {
@@ -41,6 +41,8 @@ const PatientCard = ({patientId}) => {
 
 const PatientList = () => {
   const [patients, setPatients] = useState([]);
+  const setView = useViewStore(state => state.set);
+
   useEffect(() => {
     const getPatients = async () => {
       const data = await fhirclient.request('Patient');
@@ -53,6 +55,7 @@ const PatientList = () => {
     <div className='PATIENT'>
       <h2 className='header'>Patients</h2>
       <a className="docs" href='https://hl7.org/fhir/R4/patient.html' target='_blank' rel='noreferrer'>&#8505;</a>
+      <span className='addNew' onClick={() => {setView(VIEWS.RESOURCE_EDIT, NEW_PATIENT, {new: true});}}>&#8853;</span>
       <ul className='list'>
         {patients.map((patient) => (
           <PatientCard key={patient.id} patientId={patient.id} />

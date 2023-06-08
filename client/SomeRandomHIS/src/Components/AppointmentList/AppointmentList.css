@@ -11,6 +11,14 @@
     margin-left: 20px;
 }
 
+.APPOINTMENT .addNew {
+    color: white;
+    display: inline;
+    margin-left: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
 .APPOINTMENT .list {
     width: 100%;
     padding: 0;

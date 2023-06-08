@@ -12,6 +12,14 @@
     margin-left: 20px;
 }
 
+.PATIENT .addNew {
+    color: white;
+    display: inline;
+    margin-left: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
 .PATIENT .list {
     width: 100%;
     padding: 0;

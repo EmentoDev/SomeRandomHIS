@@ -23,7 +23,7 @@ const App = () => {
         </aside>
 
         <main className="main">
-          {view.type === VIEWS.RESOURCE_EDIT && <ResourceEdit resource={view.data} />}
+          {view.type === VIEWS.RESOURCE_EDIT && <ResourceEdit resource={view.data} options={view.options} />}
           {view.type === VIEWS.APPOINTMENT_LIST && <AppointmentList patient={view.data} />}
           {view.type === VIEWS.DOCUMENT_REFERENCE_LIST && <DocumentReferenceList patient={view.data} />}
         </main>

@@ -1,6 +1,5 @@
 .RESOURCEEDIT {
     display: inline-block;
-    
 }
 
 .RESOURCEEDIT h2 {
@@ -10,13 +9,8 @@
     text-align: left;;
 }
 
-.RESOURCEEDIT .container {
-    background-color: white;
-    padding: 20px;
-}
-
 .RESOURCEEDIT .actions {
-    margin: 20px -5px;
+    margin: 20px 10px;
 }
 
 .RESOURCEEDIT .actionButton {
@@ -38,4 +32,51 @@
     white-space: pre-wrap;
     font-size: 0.8em;
     padding: 10px;
+}
+
+.container {
+    background-color: transparent !important;
+}
+
+.ant-input {
+    width: 200px !important; 
+}
+
+.ant-select {
+    width: 200px !important; 
+}
+
+.tools .ant-select {
+    width: 100px !important; 
+}
+
+.tools {
+    top: 5px !important;
+}
+
+.indexLine {
+    background-color: #eeeeee90  ;
+    padding: 5px 0 5px 5px;
+}
+
+.iconSubtraction {
+    background-color: white;
+    height: 20px;
+    display: inline-block;
+    width: 20px;
+    vertical-align: super;
+    margin-right: 5px;
+}
+
+.anticon-minus-square {
+    vertical-align: sub;
+}
+
+.anticon-minus-square svg {
+    width: 20px;
+}
+
+.anticon-plus-square {
+    background-color: white;
+    padding: 5px;
 }
