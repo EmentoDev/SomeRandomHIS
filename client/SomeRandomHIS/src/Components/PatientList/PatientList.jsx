@@ -33,7 +33,7 @@ const PatientCard = ({patientId}) => {
       />
       <div style={{margin: '-5px 0 20px 15px'}}>
         <span className='patientActionButton' onClick={() => {setView(VIEWS.APPOINTMENT_LIST, patient)}}>show Appointments</span>
-        <span className='patientActionButton'>show Documents</span>
+        <span className='patientActionButton' onClick={() => {setView(VIEWS.DOCUMENT_REFERENCE_LIST, patient)}}>show Documents</span>
       </div>
     </li>
   );
@@ -52,6 +52,7 @@ const PatientList = () => {
   return (
     <div className='PATIENT'>
       <h2 className='header'>Patients</h2>
+      <a className="docs" href='https://hl7.org/fhir/R4/patient.html' target='_blank' rel='noreferrer'>&#8505;</a>
       <ul className='list'>
         {patients.map((patient) => (
           <PatientCard key={patient.id} patientId={patient.id} />

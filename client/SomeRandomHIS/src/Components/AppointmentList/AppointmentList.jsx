@@ -49,6 +49,7 @@ const AppointmentList = ({patient}) => {
   return (
     <div className="APPOINTMENT">
         <h2>Appointments</h2>
+        <a className="docs" href='https://hl7.org/fhir/R4/appointment.html' target='_blank' rel='noreferrer'>&#8505;</a>
         <ul className='list'>
             {appointments.map((appointment) => (
                 <AppointmentCard key={appointment.id} appointmentId={appointment.id} />

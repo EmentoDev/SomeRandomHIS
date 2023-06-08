@@ -1,22 +1,22 @@
-.APPOINTMENT h2 {
+.DOCUMENTREFERENCE h2 {
     color: white;
     font-size: 1.2em;
     text-transform: uppercase;
     display: inline;
 }
 
-.APPOINTMENT .docs {
+.DOCUMENTREFERENCE .docs {
     color: white;
     display: inline;
     margin-left: 20px;
 }
 
-.APPOINTMENT .list {
+.DOCUMENTREFERENCE .list {
     width: 100%;
     padding: 0;
 }
 
-.APPOINTMENT .item {
+.DOCUMENTREFERENCE .item {
     display: block;
     width: 100%;
 }

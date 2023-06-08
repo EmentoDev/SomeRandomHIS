@@ -3,6 +3,13 @@
     font-size: 1.2em;
     color: white;
     text-transform: uppercase;
+    display: inline;
+}
+
+.PATIENT .docs {
+    color: white;
+    display: inline;
+    margin-left: 20px;
 }
 
 .PATIENT .list {

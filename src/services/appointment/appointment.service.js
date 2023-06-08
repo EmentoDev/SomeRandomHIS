@@ -90,17 +90,9 @@ module.exports.update = (args, { req }) => {
   return fhircrud.update(args, { req });
 };
 
-module.exports.remove = (args, context) =>
-  new Promise((resolve, reject) => {
-    logger.info('Appointment >>> remove');
-
-    let { id } = args;
-
-    // TODO: delete record in database (soft/hard)
-
-    // Return number of records deleted
-    resolve({ deleted: 0 });
-  });
+module.exports.remove = (args, context) => {
+  return fhircrud.remove(args, context);
+};
 
 module.exports.searchByVersionId = (args, context) =>
   new Promise((resolve, reject) => {

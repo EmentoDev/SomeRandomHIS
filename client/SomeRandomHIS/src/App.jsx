@@ -1,10 +1,12 @@
 import './App.css';
 import 'fhir-react/build/style.css';
 import 'fhir-react/build/bootstrap-reboot.min.css';
+import { useViewStore } from './store';
+import { VIEWS } from './constants';
 import PatientList from './Components/PatientList/PatientList';
 import AppointmentList from './Components/AppointmentList/AppointmentList';
-import { useViewStore } from './store';
 import ResourceEdit from './Components/ResourceEdit/ResourceEdit';
+import DocumentReferenceList from './Components/DocumentReferenceList/DocumentReferenceList';
 
 const App = () => {
   const view = useViewStore(state => state.view);
@@ -21,8 +23,9 @@ const App = () => {
         </aside>
 
         <main className="main">
-          {view.type === 'ResourceEdit' && <ResourceEdit resource={view.data} />}
-          {view.type === 'AppointmentList' && <AppointmentList patient={view.data} />}
+          {view.type === VIEWS.RESOURCE_EDIT && <ResourceEdit resource={view.data} />}
+          {view.type === VIEWS.APPOINTMENT_LIST && <AppointmentList patient={view.data} />}
+          {view.type === VIEWS.DOCUMENT_REFERENCE_LIST && <DocumentReferenceList patient={view.data} />}
         </main>
 
         <footer className="footer">&copy; Emento A/S</footer>

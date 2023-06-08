@@ -78,24 +78,8 @@ let fhirServerConfig = {
   // },
   //
   profiles: {
-    Account: {
-      service: './src/services/account/account.service.js',
-      versions: [VERSIONS['4_0_0']],
-    },
     AllergyIntolerance: {
       service: './src/services/allergyintolerance/allergyintolerance.service.js',
-      versions: [VERSIONS['4_0_0']],
-    },
-    Claim: {
-      service: './src/services/claim/claim.service.js',
-      versions: [VERSIONS['4_0_0']],
-    },
-    Organization: {
-      service: './src/services/organization/organization.service.js',
-      versions: [VERSIONS['4_0_0']],
-    },
-    Condition: {
-      service: './src/services/condition/condition.service.js',
       versions: [VERSIONS['4_0_0']],
     },
     Patient: {
@@ -106,6 +90,10 @@ let fhirServerConfig = {
       service: './src/services/appointment/appointment.service.js',
       versions: [VERSIONS['4_0_0']],
     },
+    DocumentReference: {
+      service: './src/services/documentreference/documentreference.service.js',
+      versions: [VERSIONS['4_0_0']],
+    }
   },
 };
 
