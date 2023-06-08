@@ -1,0 +1,89 @@
+{
+    "resourceType": "DocumentReference",
+    "id": "example",
+    "status": "current",
+    "docStatus": "preliminary",
+    "description": "Questionnaire",
+    "type": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "74465-6",
+                "display": "Questionnaire response Document"
+            }
+        ]
+    },
+    "category": [
+        {
+            "coding": [
+                {
+                    "system": "http://loinc.org",
+                    "code": "53576-5",
+                    "display": "Personal health monitoring report Document"
+                }
+            ]
+        }
+    ],
+    "subject": {
+        "reference": "Patient/xcda"
+    },
+    "date": "2023-01-01T12:00:00Z",
+    "author": [
+        {
+            "reference": "Practitioner/1"
+        }
+    ],
+    "custodian": {
+        "reference": "Organization/1"
+    },
+    "securityLabel": [
+        {
+            "coding": [
+                {
+                    "system": "http://terminology.hl7.org/CodeSystem/v3-Confidentiality",
+                    "code": "R",
+                    "display": "restricted"
+                }
+            ]
+        }
+    ],
+    "context": {
+        "event": [
+            {
+                "coding": [
+                    {
+                        "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+                        "code": "DISCHSUME",
+                        "display": "discharge summary entry task"
+                    }
+                ]
+            }
+        ],
+        "facilityType": {
+            "coding": [
+                {
+                    "system": "http://snomed.info/sct",
+                    "code": "69362002",
+                    "display": "Hospital ambulatory surgery facility"
+                }
+            ]
+        }
+    },
+    "content": [
+        {
+            "attachment": {
+                "contentType": "application/json",
+                "language": "da-DK",
+                "url": "https://hl7.org/fhir/R4",
+                "size": 3654,
+                "title": "Questionnaire answer",
+                "creation": "2023-01-01T12:00:00Z"
+            },
+            "format": {
+                "system": "http://ihe.net/fhir/ValueSet/IHE.FormatCode.codesystem",
+                "code": "urn:ihe:iti:xds:2017:mimeTypeSufficient",
+                "display": "mimeType Sufficient"
+            }
+        }
+    ]
+}
